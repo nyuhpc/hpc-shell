@@ -190,6 +190,29 @@ echo "Our script worked!"
 
 When we run our script, the output should be unchanged from before!
 
+## Setting execute permission with chmod
+
+In Unix, a file has three basic permissions, each of which can be set for three levels of user. The permissions are:
+
+    Read permission ("r") - numeric value 4.
+
+    Write permission ("w") - numeric value 2.
+
+    Execute permission ("x"). - numeric value 1. When applied to a directory, execute permission refers to whether the directory can be entered with 'cd'.
+
+The three levels of user are:
+
+        The user who owns the file (the "user", referred to with "u")
+
+        The group to which the file belongs - referred to with "g". Each user has a primary group and is optionally a member of other groups, when a user creates a file it is normally associated with the user's primary group. At NYU HPC all users are in a group named 'users', so group permission has little meaning.
+
+        All other users are referred to with "o".
+
+You grant permissions with "chmod who+what file" and revoke them with "chmod who-what file". (Notice that the first has "+" and the second "-"). Here "who" some combination of "u", "g" and "o" and what is some combination of "r", "w" and "x". So to set execute permission, as in the example above, we use:
+```
+$ chmod u+x my_script
+```
+
 ## Shell variables
 
 One important concept that we'll need to cover are shell variables. Variables

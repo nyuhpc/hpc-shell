@@ -31,7 +31,6 @@ $ cd hpc-test
 ```
 {: .language-bash}
 
-
 ## Creating and Editing Text Files
 
 When working on an HPC system, we will frequently need to create or edit text
@@ -71,6 +70,13 @@ editor. Here are the shortcut keys for a few common actions:
 
 * <kbd>Ctrl</kbd>+<kbd>U</kbd> &mdash; paste the cut text line (or lines). This
   command can be repeated to paste the same text elsewhere.
+
+| Option       | Explanation             |
+|--------------|-------------------------|
+| Ctrl + O     | Save the changes         |
+| Ctrl + X     | Exit nano                |
+| Ctrl + K     | Cut single line          |
+| Ctrl + U     | Paste the text           |
 
 
 > ## Using `vim` as a text editor
@@ -180,6 +186,12 @@ draft.txt
 ```
 {: .output}
 
+| Command                          | Explanation                                                                                                      |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------|
+| mv dummy_file.txt test_file.txt   | Renames `dummy_file.txt` as `test_file.txt`.                                                                     |
+| mv subdir new_subdir              | Renames the directory "subdir" to a new directory "new_subdir".                                                  |
+
+
 **Renaming** &mdash; `draft.txt` isn't a very descriptive name. How do we go
 about changing it? It turns out that `mv` is also used to rename files and
 directories. Although this may not seem intuitive at first, think of it as
@@ -214,6 +226,12 @@ has two different uses that work in the same way as `mv`:
 - Copy to same directory (copied file is renamed): `cp file newFilename`
 - Copy to other directory (copied file retains original name): `cp file
   directory`
+
+| Command                      | Explanation                                                                                                                                      |
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| cp test_file1.txt test_file2.txt | Copies a duplicate copy of `test_file1.txt` with the new name `test_file2.txt`.                                                                  |
+| cp -r subdir subdir2          | Recursively copies the directory "subdir" to a new directory "subdir2". That is, a new directory "subdir2" is created, and each file and directory under "subdir" is replicated in "subdir2". |
+
 
 Let's try this out.
 
@@ -273,6 +291,15 @@ rmdir: failed to remove `files/': Directory not empty
 files
 ```
 {: .output}
+
+| Command                          | Explanation                                                                                                      |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------|
+| rm dummy_file.txt                | Remove a file.                                                                                                   |
+| rm -i dummy_file.txt             | If you use `-i` you will be prompted for confirmation before each file is deleted.                               |
+| rm -f serious_file.txt           | Forcibly removes a file without asking, regardless of its permissions (provided you own the file).                |
+| rmdir subdir/                    | Removes "subdir" if it is already empty. Otherwise, the command fails.                                           |
+| rm -r subdir/                    | Recursively deletes the directory "subdir" and everything in it. Use it with care!                               |
+
 
 What happened? As it turns out, `rmdir` is unable to remove directories that
 have stuff in them. To delete a directory and everything inside it, we will use
@@ -440,3 +467,4 @@ out and see which ones you like best!
 
 Out of `cat`, `head`, `tail`, and `less`, which method of reading files is your
 favourite? Why?
+

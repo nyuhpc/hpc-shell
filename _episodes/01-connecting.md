@@ -10,12 +10,50 @@ objectives:
 - Connect to a remote HPC system.
 keypoints:
 - To connect to a remote HPC system using SSH and a password,
-  run `ssh yourUsername@remote.computer.address`.
+  run `ssh <NetID>@greene.hpc.nyu.edu`.
 - To connect to a remote HPC system using SSH and an SSH key,
-  run `ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address`.
+  run `ssh -i ~/.ssh/key_for_remote_computer <NetID>@greene.hpc.nyu.edu`.
 ---
 
+## Prerequisites
+To access the Greene HPC cluster, you must be connected to the NYU network. If you are physically on campus and connected via a wired connection in your office or through NYU's WiFi, you can directly SSH into the clusters without any additional steps. However, if you are off-campus or working remotely, connecting through the NYU VPN or using the gateway servers is required to establish a secure connection to the HPC systems.
+
+### Remote Connections with the NYU VPN & HPC Gateway Server
+If you are connecting from a remote location that is not on the NYU network (your home for example), you have two options: 
+
+1. VPN Option: set up your computer to use the NYU VPN. Once you've created a VPN connection, you can proceed as if you were connected to the NYU net.  
+
+2. Gateway Option: go through our gateway servers (example below). Gateways are designed to support only a very minimal set of commands and their only purpose is to let users connect HPC systems without needing to first connect to the VPN.
+
+### Log into the Greene Cluster
+NYU Campus: From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU's network, you can login to the HPC clusters directly.
+
+Off-campus: The host name of Greene is 'greene.hpc.nyu.edu'. Logging in to Greene is the two-stage process. The HPC clusters (Greene) are not directly visible to the internet (outside the NYU Network). If you are outside NYU's Network (off-campus) you must first login to a bastion host named gw.hpc.nyu.edu.
+
+From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU's network, you can login to the HPC clusters directly.  You do not need to login to the bastion host.
+
+           To login into the HPC cluster (Greene), simply use:
+
+           ssh <NYUNetID>@greene.hpc.nyu.edu
+
+            For access from Windows station using PuTTY, please click here.
+
+    To connect to VPN from Linux/MAC, please click here.
+
+From an off-campus location (outside NYU-NET), logging in to the HPC clusters is a two-step process:
+
+           1)  First login to the bastion host, gw.hpc.nyu.edu. From a Mac or Linux workstation, this is a simple terminal command (replace my_netid with your NetId). Your password is the same password you use for NYU Home:
+
+                ssh <NYUNetID>@gw.hpc.nyu.edu
+
+                Windows users will need to use Putty, see here for instructions.
+
+           2) Next login to the cluster. For Greene, this is done with: 
+
+               ssh <NYUNetID>@greene.hpc.nyu.edu
+
 ## Opening a Terminal
+Accessing the Greene HPC cluster is primarily done through the Command Line Interface (CLI). A CLI provides a text-based environment that allows users to manage files, run programs, and navigate directories via command input. On macOS, the built-in CLI tool is Terminal, while Windows 10 users can leverage the Windows Subsystem for Linux (WSL) for similar functionality. Additionally, a popular tool for connecting to Linux servers from Windows is PuTTY, a free SSH client.
 
 Connecting to an HPC system is most often done through a tool known as "SSH"
 (Secure SHell) and usually SSH is run through a terminal. So, to begin using an
@@ -37,6 +75,17 @@ then a quick search on the Internet for "how to open a terminal window in" with
 your particular Linux flavour appended to the end should quickly give you the
 directions you need.
 
+To connect to the gateway servers, simply open a terminal application and enter the following command:
+```
+ssh <NetID>@gw.hpc.nyu.edu
+```
+
+After typing in your password you will be logged in to the cluster. Once this connection is established, you can make one more hop and connect to one of the HPC clusters:
+```
+# this will connect you to Greene HPC cluster
+ssh <NetID>@greene.hpc.nyu.edu
+```
+
 ### Mac
 
 Macs have had a terminal built in since the first version of OS X since it is
@@ -47,6 +96,17 @@ search bar that shows up type "terminal", choose the terminal app from the list
 of results (it will look like a tiny, black computer screen) and you will be
 presented with a terminal window. Alternatively, you can find Terminal under
 "Utilities" in the Applications menu.
+
+To connect to the gateway servers, simply open a terminal application and enter the following command:
+```
+ssh <NetID>@gw.hpc.nyu.edu
+```
+
+After typing in your password you will be logged in to the cluster. Once this connection is established, you can make one more hop and connect to one of the HPC clusters:
+```
+# this will connect you to Greene HPC cluster
+ssh <NetID>@greene.hpc.nyu.edu
+```
 
 ### Windows
 
@@ -80,6 +140,8 @@ it is easy to add plug-ins or remove the software. The installer edition adds
 MobaXterm to your Windows installation and menu as any other program you might
 install. If you are not sure that you will continue to use MobaXterm in the
 future, the portable edition is likely the best choice for you.
+MobaKeyGen, see the MoabXterm 
+[documentation](https://mobaxterm.mobatek.net/documentation.html) 
 
 Download the version that you would like to use and install it as you would any
 other software on your Windows installation. Once the software is installed you
@@ -107,6 +169,8 @@ PuTTY is available for free download from
 Download the version that is correct for your operating system and install it 
 as you would other software on your Windows system. Once installed it will be 
 available through the start menu or similar.
+puttygen, see the Putty 
+[documentation](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)
 
 Running PuTTY will not initially produce a terminal but instead a window full
 of connection options. Putting the address of the remote system in the "Host
@@ -127,6 +191,47 @@ clipboard to the PuTTY terminal.
 For those logging in with PuTTY it would likely be best to cover the terminal
 basics already mentioned above before moving on to navigating the remote
 system.
+
+### Open OnDemand (Web-based Graphical User Interface)
+Open OnDemand is an open source project funded by the National Science Foundation (NSF). Open OnDemand is designed to create easier access to users to interface with HPC systems. Originally developed by Ohio Supercomputer Center (OSC), used by many universities around the world, and now servicing the NYU Greene HPC cluster.
+
+Open OnDemand has a variety of convenient tools to manage files, access the command line, manage and monitor jobs, and launch interactive applications, such as Jupyter Notebooks, RStudio sessions, and even full Linux Desktops. 
+
+Features Include:
+
+    Easy file management - upload and download files, view HTML and pictures without downloading
+
+    Command-line shell access without any SSH client locally installed
+
+    Job management and monitoring
+
+    Full Linux desktop experience without X11
+
+    Interactive Apps such as JupyterHub and RStudio without the need for port forwarding
+
+Open OnDemand (OOD) is accessible to all users with a valid NYU HPC account while on-campus network or through a VPN.
+
+To access OOD visit: https://ood.hpc.nyu.edu (VPN Required)
+
+#### Access the Shell
+
+Under the clusters menu you can select the Greene Shell Access option to access the Linux shell. No local SSH client is required.
+
+#### Interactive Applications
+
+GUI based applications are accessible without the need for port or X11 forwarding. Select the Interactive Apps menu, select the desired application, and submit the job based on required resources and options. 
+
+#### Troubleshooting Connections to Open OnDemand
+
+A common issue that can occur is receiving an error that the Open OnDemand page cannot be reached. Sometimes this can indicate that the service is down, but often this is an issue with the the local browser cache. You can test this by opening a private browser window and seeing if https://ood.hpc.nyu.edu will load. If it does, try deleting the cache for https://ood.hpc.nyu.edu in your browser history to resolve this issue.
+
+In Chrome, this can be done by navigating to this page in your settings:
+
+chrome://settings/content/all?searchSubpage=ood.hpc.nyu.edu&search=site+data
+
+The link above will automatically search for the Open OnDemand site data and cookies. You can then simply click on the trashcan icon to delete the site cache.
+
+Once done, try navigating again to https://ood.hpc.nyu.edu and the site should load. For other issues please email hpc@nyu.edu.
 
 ## Creating an SSH key
 
@@ -207,15 +312,6 @@ to provide.
 > [Secure Secure Shell](https://stribika.github.io/2015/01/04/secure-secure-shell.html).
 {: .callout}
 
-
-### Windows
-
-On Windows you can use
-- puttygen, see the Putty 
-[documentation](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)
-- MobaKeyGen, see the MoabXterm 
-[documentation](https://mobaxterm.mobatek.net/documentation.html) 
-
 ## Logging onto the system
 
 With all of this in mind, let's connect to a remote HPC system. In this
@@ -227,7 +323,7 @@ example computer, we will use SSH (if you are using PuTTY, see above).
 
 SSH allows us to connect to UNIX computers remotely, and use them as if they
 were our own. The general syntax of the connection command follows the format
-`ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address` 
+`ssh -i ~/.ssh/key_for_remote_computer <NetID>@greene.hpc.nyu.edu` 
 when using SSH keys and `ssh yourUsername@some.computer.address` if only
 password access is available.  Let's attempt to connect to the HPC system
 now:
