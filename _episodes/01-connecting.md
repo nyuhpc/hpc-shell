@@ -30,27 +30,34 @@ NYU Campus: From within the NYU network, that is, from an on-campus location, or
 
 Off-campus: The host name of Greene is 'greene.hpc.nyu.edu'. Logging in to Greene is the two-stage process. The HPC clusters (Greene) are not directly visible to the internet (outside the NYU Network). If you are outside NYU's Network (off-campus) you must first login to a bastion host named gw.hpc.nyu.edu.
 
-From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU's network, you can login to the HPC clusters directly.  You do not need to login to the bastion host.
+From within the NYU network, that is, from an on-campus location, or after you VPN inside NYU's network, you can log in to the HPC clusters directly. You do not need to log in to the bastion host.
 
-           To login into the HPC cluster (Greene), simply use:
+To log in to the HPC cluster (Greene), simply use:
 
-           ssh <NYUNetID>@greene.hpc.nyu.edu
+```
+ssh <NYUNetID>@greene.hpc.nyu.edu
+```
 
-            For access from Windows station using PuTTY, please click here.
+For access from Windows stations using PuTTY, please [click here](#).
 
-    To connect to VPN from Linux/MAC, please click here.
+To connect to VPN from Linux/MAC, please [click here](#).
 
 From an off-campus location (outside NYU-NET), logging in to the HPC clusters is a two-step process:
 
-           1)  First login to the bastion host, gw.hpc.nyu.edu. From a Mac or Linux workstation, this is a simple terminal command (replace my_netid with your NetId). Your password is the same password you use for NYU Home:
+1. First, log in to the bastion host, `gw.hpc.nyu.edu`. From a Mac or Linux workstation, this is a simple terminal command (replace `<NYUNetID>` with your NetID). Your password is the same password you use for NYU Home:
 
-                ssh <NYUNetID>@gw.hpc.nyu.edu
+    ```
+    ssh <NYUNetID>@gw.hpc.nyu.edu
+    ```
 
-                Windows users will need to use Putty, see here for instructions.
+    Windows users will need to use PuTTY, see [here](#) for instructions.
 
-           2) Next login to the cluster. For Greene, this is done with: 
+2. Next, log in to the cluster. For Greene, this is done with:
 
-               ssh <NYUNetID>@greene.hpc.nyu.edu
+    ```
+    ssh <NYUNetID>@greene.hpc.nyu.edu
+    ```
+
 
 ## Opening a Terminal
 Accessing the Greene HPC cluster is primarily done through the Command Line Interface (CLI). A CLI provides a text-based environment that allows users to manage files, run programs, and navigate directories via command input. On macOS, the built-in CLI tool is Terminal, while Windows 10 users can leverage the Windows Subsystem for Linux (WSL) for similar functionality. Additionally, a popular tool for connecting to Linux servers from Windows is PuTTY, a free SSH client.
