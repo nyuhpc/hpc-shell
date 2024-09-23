@@ -208,7 +208,7 @@ You grant permissions with `chmod who+what file` and revoke them with `chmod who
 
 So, to set execute permission, as in the example above, we use:
 
-```bash
+```
 $ chmod u+x my_script
 ```
 
@@ -224,7 +224,7 @@ To set a variable, simply type in a name containing only letters, numbers, and
 underscores, followed by an `=` and whatever you want to put in the variable.
 Shell variable names are often uppercase by convention (but do not have to be).
 
-```bash
+```
 $ VAR="This is our variable"
 ```
 {: .language-bash}
@@ -233,11 +233,11 @@ To use a variable, prefix its name with a `$` sign. Note that if we want to
 simply check what a variable is, we should use echo (or else the shell will try
 to run the contents of a variable).
 
-```bash
+```
 $ echo $VAR
 ```
 {: .language-bash}
-```bash
+```
 This is our variable
 ```
 {: .output}
@@ -248,7 +248,7 @@ file we specify with `FILE`.
 
 Our script:
 
-```bash
+```
 #!/bin/bash
 
 # set our variable to the name of our GTF file
@@ -259,12 +259,12 @@ wc -l $FILE
 ```
 {: .language-bash}
 
-```bash
+```
 $ ./demo.sh
 ```
 {: .language-bash}
 
-```bash
+```
 542048 dmel-all-r6.19.gtf
 ```
 {: .output}
@@ -282,7 +282,7 @@ in this lesson, but it's something to be aware of).
 
 Our script:
 
-```bash
+```
 #!/bin/bash
 
 # call wc -l on our first argument
@@ -290,11 +290,11 @@ wc -l $1
 ```
 {: .language-bash}
 
-```bash
+```
 $ ./demo.sh dmel_unique_protein_isoforms_fb_2016_01.tsv
 ```
 {: .language-bash}
-```bash
+```
 22129 dmel_unique_protein_isoforms_fb_2016_01.tsv
 ```
 {: .output}
@@ -304,23 +304,23 @@ pure text. How do we save the output of an actual command like `ls -l`?
 
 A demonstration of what doesn't work:
 
-```bash
+```
 $ TEST=ls -l
 ```
 {: .language-bash}
 
-```bash
+```
 -bash: -l: command not found
 ```
 {: .error}
 
 What does work (we need to surround any command with `$(command)`):
-```bash
+```
 $ TEST=$(ls -l)
 $ echo $TEST
 ```
 {: .language-bash}
-```bash
+```
 total 90372 -rw-rw-r-- 1 jeff jeff 12534006 Jan 16 18:50 bash-lesson.tar.gz -rwxrwxr-x. 1 jeff jeff 40 Jan 1619:41 demo.sh -rw-rw-r-- 1 jeff jeff 77426528 Jan 16 18:50 dmel-all-r6.19.gtf -rw-r--r-- 1 jeff jeff 721242 Jan 25 2016 dmel_unique_protein_isoforms_fb_2016_01.tsv drwxrwxr-x. 2 jeff jeff 4096 Jan 16 19:16 fastq -rw-r--r-- 1 jeff jeff 1830516 Jan 25 2016 gene_association.fb.gz -rw-rw-r-- 1 jeff jeff 15 Jan 16 19:17 test.txt -rw-rw-r-- 1 jeff jeff 245 Jan 16 19:24 word_counts.txt
 ```
 {: .output}
@@ -338,7 +338,7 @@ commands on every file in a directory (or other stuff of that nature).
 
 for-loops generally have the following syntax:
 
-```bash
+```
 #!/bin/bash
 
 for VAR in first second third
@@ -356,12 +356,12 @@ between `do` and `done` is performed.
 
 Let's run the script we just wrote (I saved mine as `loop.sh`).
 
-```bash
+```
 $ chmod +x loop.sh
 $ ./loop.sh
 ```
 {: .language-bash}
-```bash
+```
 first
 second
 third
@@ -372,7 +372,7 @@ What if we wanted to loop over a shell variable, such as every file in the
 current directory? Shell variables work perfectly in for-loops. In this
 example, we'll save the result of `ls` and loop over each file:
 
-```bash
+```
 #!/bin/bash
 
 FILES=$(ls)
@@ -383,11 +383,11 @@ done
 ```
 {: .language-bash}
 
-```bash
+```
 $ ./loop.sh
 ```
 {: .language-bash}
-```bash
+```
 bash-lesson.tar.gz
 demo.sh
 dmel_unique_protein_isoforms_fb_2016_01.tsv
@@ -403,7 +403,7 @@ word_counts.txt
 There's a shortcut to run on all files of a particular type, say all `.gz`
 files:
 
-```bash
+```
 #!/bin/bash
 
 for VAR in *.gz
@@ -412,7 +412,7 @@ do
 done
 ```
 {: .language-bash}
-```bash
+```
 bash-lesson.tar.gz
 gene_association.fb.gz
 ```
@@ -428,7 +428,7 @@ gene_association.fb.gz
 > > ## Solution
 > > 
 > > Create the following script in a file called `head_all.sh`
-> > ```bash
+> > ```
 > > #!/bin/bash
 > > 
 > > for FILE in *.fastq
@@ -450,12 +450,12 @@ gene_association.fb.gz
 > whatever you want to concatenate to the beginning or end of the shell
 > variable after enclosing it in `{}` characters.
 >
-> ```bash
+> ```
 > FILE=stuff.txt
 > echo ${FILE}.example
 > ```
 > {: .language-bash}
-> ```bash
+> ```
 > stuff.txt.example
 > ```
 > {: .output}
@@ -466,7 +466,7 @@ gene_association.fb.gz
 > > ## Solution
 > > 
 > > Create the following script in a file called `process.sh`
-> > ```bash
+> > ```
 > > #!/bin/bash
 > > 
 > > for FILE in *
@@ -480,7 +480,7 @@ gene_association.fb.gz
 > > truly only get files and not directories, we need to modify this to use the
 > > `find` command to give us only files in the current directory:
 > >
-> > ```bash
+> > ```
 > > #!/bin/bash
 > > 
 > > for FILE in $(find . -max-depth 1 -type f)
@@ -506,7 +506,7 @@ gene_association.fb.gz
 > Let's make an example file and give everyone permission to do everything with
 > it.
 >
-> ```bash
+> ```
 > touch example
 > ls -l example
 > chmod 777 example
@@ -519,7 +519,7 @@ gene_association.fb.gz
 >
 > > ## Solution
 > >
-> > ```bash
+> > ```
 > > chmod 700 example
 > > ```
 > > {: .language-bash}
