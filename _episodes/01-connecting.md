@@ -34,7 +34,7 @@ From within the NYU network, that is, from an on-campus location, or after you V
 
 To log in to the HPC cluster (Greene), simply use:
 
-```
+```bash
 ssh <NYUNetID>@greene.hpc.nyu.edu
 ```
 
@@ -255,13 +255,13 @@ that you will log in to.
 
 Once you have opened a terminal check for existing SSH keys and filenames
 since existing SSH keys are overwritten,
-```
+```bash
 $ ls ~/.ssh/
 ```
 {: .language-bash}
 
 then generate a new public-private key pair,
-```
+```bash
 $ ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_{{ site.workshop_host }}_ed25519
 ```
 {: .language-bash}
@@ -281,7 +281,7 @@ $ ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_{{ site.workshop_host }}_ed25519
 If ed25519 is not available, use the older (but strong and trusted)
 [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) cryptography:
 
-```
+```bash
 $ ls ~/.ssh/
 $ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_{{ site.workshop_host }}_rsa
 ```
@@ -337,27 +337,27 @@ when using SSH keys and `ssh yourUsername@some.computer.address` if only
 password access is available.  Let's attempt to connect to the HPC system
 now:
 
-```
+```bash
 ssh -i ~/.ssh/key_{{ site.workshop_host }}_ed25519 yourUsername@{{ site.workshop_host_login }}
 ```
 {: .language-bash}
 
 or
 
-```
+```bash
 ssh -i ~/.ssh/key_{{ site.workshop_host }}_rsa yourUsername@{{ site.workshop_host_login }}
 ```
 {: .language-bash}
 
 or if SSH keys have not been enabled 
 
-```
+```bash
 ssh yourUsername@{{ site.workshop_host_login }}
 ```
 {: .language-bash}
 
 
-```
+```bash
 {% include /snippets/01/login_output.{{ site.workshop_host_id }} %}
 ```
 {: .output}
@@ -367,7 +367,7 @@ This prompt is informative, and lets you grasp certain information at a glance.
 (If you don't understand what these things are, don't worry! We will cover
 things in depth as we explore the system further.)
 
-```
+```bash
 {{ site.workshop_host_prompt }}
 ```
 {: .output}
