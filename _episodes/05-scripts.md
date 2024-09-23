@@ -208,7 +208,7 @@ You grant permissions with `chmod who+what file` and revoke them with `chmod who
 
 So, to set execute permission, as in the example above, we use:
 
-```
+```bash
 $ chmod u+x my_script
 ```
 

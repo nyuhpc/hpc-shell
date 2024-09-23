@@ -46,17 +46,17 @@ From an off-campus location (outside NYU-NET), logging in to the HPC clusters is
 
 1. First, log in to the bastion host, `gw.hpc.nyu.edu`. From a Mac or Linux workstation, this is a simple terminal command (replace `<NYUNetID>` with your NetID). Your password is the same password you use for NYU Home:
 
-    ```
-    ssh <NYUNetID>@gw.hpc.nyu.edu
-    ```
+```bash
+ssh <NYUNetID>@gw.hpc.nyu.edu
+```
 
     Windows users will need to use PuTTY, see [here](#) for instructions.
 
 2. Next, log in to the cluster. For Greene, this is done with:
 
-    ```
-    ssh <NYUNetID>@greene.hpc.nyu.edu
-    ```
+```bash
+ssh <NYUNetID>@greene.hpc.nyu.edu
+```
 
 
 ## Opening a Terminal
@@ -83,12 +83,12 @@ your particular Linux flavour appended to the end should quickly give you the
 directions you need.
 
 To connect to the gateway servers, simply open a terminal application and enter the following command:
-```
+```bash
 ssh <NetID>@gw.hpc.nyu.edu
 ```
 
 After typing in your password you will be logged in to the cluster. Once this connection is established, you can make one more hop and connect to one of the HPC clusters:
-```
+```bash
 # this will connect you to Greene HPC cluster
 ssh <NetID>@greene.hpc.nyu.edu
 ```
@@ -105,12 +105,14 @@ presented with a terminal window. Alternatively, you can find Terminal under
 "Utilities" in the Applications menu.
 
 To connect to the gateway servers, simply open a terminal application and enter the following command:
-```
+
+```bash
 ssh <NetID>@gw.hpc.nyu.edu
 ```
 
 After typing in your password you will be logged in to the cluster. Once this connection is established, you can make one more hop and connect to one of the HPC clusters:
-```
+
+```bash
 # this will connect you to Greene HPC cluster
 ssh <NetID>@greene.hpc.nyu.edu
 ```
@@ -206,15 +208,15 @@ Open OnDemand has a variety of convenient tools to manage files, access the comm
 
 Features Include:
 
-    Easy file management - upload and download files, view HTML and pictures without downloading
+Easy file management - upload and download files, view HTML and pictures without downloading
 
-    Command-line shell access without any SSH client locally installed
+Command-line shell access without any SSH client locally installed
 
-    Job management and monitoring
+Job management and monitoring
 
-    Full Linux desktop experience without X11
+Full Linux desktop experience without X11
 
-    Interactive Apps such as JupyterHub and RStudio without the need for port forwarding
+Interactive Apps such as JupyterHub and RStudio without the need for port forwarding
 
 Open OnDemand (OOD) is accessible to all users with a valid NYU HPC account while on-campus network or through a VPN.
 
