@@ -23,6 +23,20 @@ happened yet, and we're not going to be able to do anything until we learn a
 few basic commands. By the end of this lesson, you will know how to "move
 around" the system and look at what's there.
 
+
+## System Architecture
+Files Systems for usage:
+
+The NYU HPC clusters have multiple file systems for user's files. Each file system is configured differently to serve a different purpose.
+
+| Space     | Environment Variable | Space Purpose                                                                 | Flushed                                         | Allocation (per user) |
+|-----------|----------------------|-------------------------------------------------------------------------------|-------------------------------------------------|-----------------------|
+| /home     | $HOME                 | Program development space; storing small files you want to keep long term, e.g. source code, scripts. | NO                                              | 20 GB                 |
+| /scratch  | $SCRATCH              | Computational workspace. Best suited to large, infrequent reads and writes.    | YES. Files not accessed for 60 days are deleted. | 5 TB                  |
+| /archive  | $ARCHIVE              | Long-term storage                                                             | NO                                              | 2 TB                  |
+| /beegfs   | $BEEGFS               | Computational workspace, workflows with many small files.                      | YES. Files not accessed for 60 days are deleted. | 2 TB                  |
+
+
 Right now, all we see is something that looks like this:
 
 ~~~
@@ -45,7 +59,7 @@ $ whoami
 ~~~
 {: .language-bash}
 ~~~
-yourUsername
+<NetID>
 ~~~
 {: .output}
 
@@ -61,7 +75,7 @@ stands for "print working directory"). ("Directory" is another word for
 "folder"). At any moment, our **current working directory** (where we are) is
 the directory that the computer assumes we want to run commands in unless we
 explicitly specify something else. Here, the computer's response is `{{
-site.workshop_host_homedir }}/yourUsername`, which is ``yourUsername`` **home
+site.workshop_host_homedir }}/<NetID>`, which is ``<NetID>`` **home
 directory**. Note that the location of your home directory may differ from
 system to system.
 
@@ -70,7 +84,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-{{ site.workshop_host_homedir }}/yourUsername
+{{ site.workshop_host_homedir }}/<NetID>
 ~~~
 {: .output}
 
@@ -135,7 +149,7 @@ $ pwd
 {: .output}
 
 What is the `~` character? When using the shell, `~` is a shortcut that
-represents `{{ site.workshop_host_homedir }}/yourUserName`.
+represents `{{ site.workshop_host_homedir }}/<NetID>`.
 
 Now that we know how to use `cd`, we can go anywhere. That's a lot of
 responsibility. What happens if we get "lost" and want to get back to where we
@@ -144,7 +158,7 @@ started?
 To go back to your home directory, the following three commands will work:
 
 ```
-$ cd {{ site.workshop_host_homedir }}/yourUserName
+$ cd {{ site.workshop_host_homedir }}/<NetID>
 $ cd ~
 $ cd
 ```
@@ -224,8 +238,8 @@ $ pwd
 {: .language-bash}
 
 ```
-{{ site.workshop_host_homedir }}/yourUserName/documents
-{{ site.workshop_host_homedir }}/yourUserName
+{{ site.workshop_host_homedir }}/<NetID>/documents
+{{ site.workshop_host_homedir }}/<NetID>
 ```
 {: .output}
 
@@ -259,7 +273,7 @@ $ ls -l
 ```
 {: .language-bash}
 ```
-drwxr-xr-x 2 yourUsername tc001 4096 Jan 14 17:31 documents
+drwxr-xr-x 2 <NetID> tc001 4096 Jan 14 17:31 documents
 ```
 {: .output}
 
@@ -277,15 +291,15 @@ $ ls -l -a
 ```
 {{ site.workshop_host_prompt }} ls -la
 total 36
-drwx--S--- 5 yourUsername tc001 4096 Nov 28 09:58 .
+drwx--S--- 5 <NetID> tc001 4096 Nov 28 09:58 .
 drwxr-x--- 3 root         tc001 4096 Nov 28 09:40 ..
--rw-r--r-- 1 yourUsername tc001   18 Dec  6  2016 .bash_logout
--rw-r--r-- 1 yourUsername tc001  193 Dec  6  2016 .bash_profile
--rw-r--r-- 1 yourUsername tc001  231 Dec  6  2016 .bashrc
-drwxr-sr-x 2 yourUsername tc001 4096 Nov 28 09:58 documents
--rw-r--r-- 1 yourUsername tc001  334 Mar  3  2017 .emacs
-drwxr-xr-x 4 yourUsername tc001 4096 Aug  2  2016 .mozilla
-drwx--S--- 2 yourUsername tc001 4096 Nov 28 09:58 .ssh
+-rw-r--r-- 1 <NetID> tc001   18 Dec  6  2016 .bash_logout
+-rw-r--r-- 1 <NetID> tc001  193 Dec  6  2016 .bash_profile
+-rw-r--r-- 1 <NetID> tc001  231 Dec  6  2016 .bashrc
+drwxr-sr-x 2 <NetID> tc001 4096 Nov 28 09:58 documents
+-rw-r--r-- 1 <NetID> tc001  334 Mar  3  2017 .emacs
+drwxr-xr-x 4 <NetID> tc001 4096 Aug  2  2016 .mozilla
+drwx--S--- 2 <NetID> tc001 4096 Nov 28 09:58 .ssh
 ```
 {: .output}
 
@@ -308,8 +322,8 @@ $ ls -l -a ~/documents
 {: .language-bash}
 
 ```
-drwxr-sr-x 2 yourUsername tc001 4096 Nov 28 09:58 .
-drwx--S--- 5 yourUsername tc001 4096 Nov 28 09:58 ..
+drwxr-sr-x 2 <NetID> tc001 4096 Nov 28 09:58 .
+drwx--S--- 5 <NetID> tc001 4096 Nov 28 09:58 ..
 ```
 {: .output}
 
